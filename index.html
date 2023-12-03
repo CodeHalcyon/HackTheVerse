@@ -529,12 +529,9 @@ l-28 32 -2 -84z" />
                     </div>
                     <div class="nav-links-right">
                         <ul class="nav-ul myTopnav">
-                            <li><a href="#">Timeline</a></li>
-                            <li><a href="#">Sponsors</a></li>
+                            <li><a href="#timeline">Timeline</a></li>
+                            <li><a href="#sponsors">Sponsors</a></li>
                             <li><a href="https://linktr.ee/CodeoholicsCommunity" target="_blank">Connect With Us!</a>
-                            </li>
-                            <li class="icon">
-                                <a href="javascript:void(0);">&#9776;</a>
                             </li>
                         </ul>
                     </div>
@@ -543,12 +540,12 @@ l-28 32 -2 -84z" />
             <section id="clock" class="frist clock">
                 <div class="bg-video">
                     <video autoplay muted loop id="myVideo">
-                        <source src="video1.mp4" type="video/mp4">
+                        <source id="videoSource" src="video1.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="center" style="width: 100vw;">
                     <center>
-                        <h1 class="heading r-h1">The <span id="typed" class="purple">Hack</span> will start in </h1>
+                        <h1 class="header">The <span id="typed" class="purple">Hack</span> will start in </h1>
                     </center>
                     <div class="clock-body">
                         <div id="hrs">408</div>:
@@ -559,7 +556,7 @@ l-28 32 -2 -84z" />
             </section>
             <section id="about">
                 <div class="center">
-                    <h1 class="header r-h1" style="font-family: 'Press Start 2P', cursive;">About <span
+                    <h1 class="header r-h1">About <span
                             class="purple"><span id="typed">Hack The Verse(HTV)</span></span>
                     </h1>
                     <div class="" id="abt-container">
@@ -570,7 +567,7 @@ l-28 32 -2 -84z" />
 
             <section id="why">
                 <div class="center">
-                    <h1 class="header r-h1" style="font-family: 'Press Start 2P', cursive;"> Why <span
+                    <h1 class="header r-h1"> Why <span
                             class="purple">Hack The Verse(HTV)?</span>
                     </h1>
                     <div class="container" id="container"></div>
@@ -580,7 +577,7 @@ l-28 32 -2 -84z" />
             <section id="timeline">
 
                 <div class="smtg">
-                    <h1 class="r-h1" style="font-family: 'Press Start 2P', cursive;"><span
+                    <h1 class="r-h1"><span
                             class="purple">Timeline</span>
                     </h1> <br>
                     <div class="left" id="timeLeft"></div>
@@ -591,7 +588,7 @@ l-28 32 -2 -84z" />
             <div id="sponsors">
                 <div class="sponsors">
                     <section>
-                        <h1 class="header r-h1" style="font-family: 'Press Start 2P', cursive;"><span
+                        <h1 class="header r-h1"><span
                                 class="purple"><span id="typed">In collabration with</span></span>
                         </h1>
                         <marquee behavior="" direction="right" scrollamount="20">
@@ -608,116 +605,122 @@ l-28 32 -2 -84z" />
             </div>
             <section id="connect"></section>
         </div>
-        <script>
-            var typed = new Typed('#typed', {
-                strings: ["Hack", "Innovation", "Creativity", "Change"],
-                typeSpeed: 100,
-                backSpeed: 100,
-                loop: true,
-                smartBackspace: true,
-                cursorChar: '|',
-                startDelay: 1000,
-            });
+    </div>
+    <script>
+        var typed = new Typed('#typed', {
+            strings: ["Hack", "Innovation", "Creativity", "Change"],
+            typeSpeed: 100,
+            backSpeed: 100,
+            loop: true,
+            smartBackspace: true,
+            cursorChar: '|',
+            startDelay: 1000,
+        });
+
+        const bgVideo = document.getElementById("videoSource")
+        if(window.outerWidth>720)
+        bgVideo.src = "video1.mp4"
+        else
+        bgVideo.src = "mobileBg.mp4"
+
+
+        // why section ka code
+        const whyCount = document.getElementById("container")
+        const whyContent = [
+            "Network & Collaborate: Connect with industry pros and enthusiasts, team up for challenges, and innovate together",
+            "Boost Skills: Dive into diverse workshops, talks, and sessions, expanding your tech know-how and problem-solving skills.",
+            "Showcase Your Best: Present projects to judges and peers for recognition and a chance to shine nationwide.",
+            "Internship & Fellowship Opportunities: Stand a chance to secure internships or fellowships with leading tech firms and organizations based on your exceptional performance during Hack the Verse.",
+            "24 Hours of Innovation: Non-stop coding, brainstorming, and solution-building in an electrifying atmosphere!"
+        ]
+        whyContent.map((content) => {
+            const whyDiv = document.createElement("div")
+            whyDiv.className = "why cards"
+            whyDiv.innerText = content
+            whyCount.appendChild(whyDiv)
+        })
+
+        // about section ka code
+        const abtContent = [
+            "Win potential <span class='green'>Internships</span> or <span class='green'>Fellowships</span> from leading startups and companies.",
+            "<span class='green'>Connect</span>, Collaborate, etwork and <span class='green'>Innovate</span> with pros and enthusiasts.",
+            "Showcase your <span class='green'>projects</span> for recognition.",
+            "Enjoy <span class='green'>24 hours</span> of non-stop coding and innovation!"
+        ]
+
+        const imgUrls = [
+            "internship.png",
+            "network.png",
+            "project.png",
+            "innovation.png"
+        ]
+        let i = 0
+        const abtConatiner = document.getElementById("abt-container")
+        abtContent.map((content) => {
+            const abtDiv = document.createElement("div")
+            const abtDivChild = document.createElement("div")
+            const abtDivChildIcons = document.createElement("div")
+            const image = document.createElement("img")
+            abtDiv.className = "abtDiv"
+            abtDivChild.innerHTML = content
+            image.src = imgUrls[i]
+            abtDivChildIcons.appendChild(image)
+            abtDiv.appendChild(abtDivChildIcons)
+            abtDiv.appendChild(abtDivChild)
+            abtConatiner.appendChild(abtDiv)
+            i += 1
+        })
+
+
+        console.table(abtConatiner);
+
+        //left timeline ka code
+        let topStyle = 100
+        const leftElem = document.getElementById("timeLeft")
+        const left = [
+            "9:20-10:20 AM: Registrations",
+            "11:30 AM-12:00 PM: Selection of Problem Statements",
+            "12:30 PM: Hacking Begins",
+            "2:00-4:00 PM: Hacking Continues",
+            "8:00 PM: Dinner",
+            "8:00-9:00 AM: Breakfast",
+            "10:10 AM: Final Round of Judging"
+        ]
+
+        left.map((desc) => {
+            const leftDiv = document.createElement("div")
+            leftDiv.className = "timeline-card card-left"
+            leftDiv.style.top = topStyle
+            leftDiv.innerText = desc
+            leftElem.appendChild(leftDiv)
+            top = top + 100
+            console.log(typeof topStyle)
+        })
+
+        //right timeline ka code
+        let topStyleR = 150
+        const rightElem = document.getElementById("timeRight")
+        const right = [
+            "10:20-11:30 AM: Opening Ceremony & Announcement of Problem Statements",
+            "12:10-12:30 PM: Problem Statement Discussion & Team Formation",
+            "1:30-2:00 PM: Lunch",
+            "4:30 PM: Initial Round of Judging",
+            "2:00 AM: Reviewing Progress on Ideas (Selection Stage 2)",
+            "9:10 AM: Submission of Git Repository",
+            "12:00 PM: Closing Ceremony & Winner Announcement"
+        ]
+
+        let x
+        right.map((desc) => {
+            const rightDiv = document.createElement("div")
+            rightDiv.className = "timeline-card card-right"
+            rightDiv.innerText = desc
+            rightElem.appendChild(rightDiv)
+        })
 
 
 
-            // why section ka code
-            const whyCount = document.getElementById("container")
-            const whyContent = [
-                "Network & Collaborate: Connect with industry pros and enthusiasts, team up for challenges, and innovate together",
-                "Boost Skills: Dive into diverse workshops, talks, and sessions, expanding your tech know-how and problem-solving skills.",
-                "Showcase Your Best: Present projects to judges and peers for recognition and a chance to shine nationwide.",
-                "Internship & Fellowship Opportunities: Stand a chance to secure internships or fellowships with leading tech firms and organizations based on your exceptional performance during Hack the Verse.",
-                "24 Hours of Innovation: Non-stop coding, brainstorming, and solution-building in an electrifying atmosphere!"
-            ]
-            whyContent.map((content) => {
-                const whyDiv = document.createElement("div")
-                whyDiv.className = "why cards"
-                whyDiv.innerText = content
-                whyCount.appendChild(whyDiv)
-            })
-
-            // about section ka code
-            const abtContent = [
-                "Win potential Internships or Fellowships from leading startups and companies.",
-                "Connect, collaborate,network and innovate with pros and enthusiasts.",
-                "Showcase your projects for recognition.",
-                "Enjoy 24 hours of non-stop coding and innovation!"
-            ]
-
-            const imgUrls = [
-                "internship.png",
-                "network.png",
-                "project.png",
-                "innovation.png"
-            ]
-            let i=0
-            const abtConatiner = document.getElementById("abt-container")
-            abtContent.map((content) => {
-                const abtDiv = document.createElement("div")
-                const abtDivChild = document.createElement("div")
-                const abtDivChildIcons = document.createElement("div")
-                const image = document.createElement("img")
-                abtDiv.className = "abtDiv"
-                abtDivChild.innerText = content
-                image.src = imgUrls[i]
-                abtDivChildIcons.appendChild(image)
-                abtDiv.appendChild(abtDivChildIcons)
-                abtDiv.appendChild(abtDivChild)
-                abtConatiner.appendChild(abtDiv)
-                i+=1
-            })
-
-
-            console.table(abtConatiner);
-
-            //left timeline ka code
-            let topStyle = 100
-            const leftElem = document.getElementById("timeLeft")
-            const left = [
-                "9:20-10:20 AM: Registrations",
-                "11:30 AM-12:00 PM: Selection of Problem Statements",
-                "12:30 PM: Hacking Begins",
-                "2:00-4:00 PM: Hacking Continues",
-                "8:00 PM: Dinner",
-                "8:00-9:00 AM: Breakfast",
-                "10:10 AM: Final Round of Judging"
-            ]
-
-            left.map((desc) => {
-                const leftDiv = document.createElement("div")
-                leftDiv.className = "timeline-card card-left"
-                leftDiv.style.top = topStyle
-                leftDiv.innerText = desc
-                leftElem.appendChild(leftDiv)
-                top = top + 100
-                console.log(typeof topStyle)
-            })
-
-            //right timeline ka code
-            let topStyleR = 150
-            const rightElem = document.getElementById("timeRight")
-            const right = [
-                "10:20-11:30 AM: Opening Ceremony & Announcement of Problem Statements",
-                "12:10-12:30 PM: Problem Statement Discussion & Team Formation",
-                "1:30-2:00 PM: Lunch",
-                "4:30 PM: Initial Round of Judging",
-                "2:00 AM: Reviewing Progress on Ideas (Selection Stage 2)",
-                "9:10 AM: Submission of Git Repository",
-                "12:00 PM: Closing Ceremony & Winner Announcement"
-            ]
-
-            let x
-            right.map((desc) => {
-                const rightDiv = document.createElement("div")
-                rightDiv.className = "timeline-card card-right"
-                rightDiv.innerText = desc
-                rightElem.appendChild(rightDiv)
-            })
-
-
-
-        </script>
+    </script>
 </body>
 
 </html>
